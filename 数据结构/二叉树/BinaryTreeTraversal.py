@@ -64,6 +64,12 @@ def post_order_traversal(node):
     return node
 
 
+"""
+         3
+    2        8
+  9  10       4
+"""
+
 if __name__ == '__main__':
     my_input_list = list([3, 2, 9, None, None, 10, None, None, 8, None, 4])
     root = create_binary_tree(my_input_list)
