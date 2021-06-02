@@ -21,13 +21,13 @@ class Solution:
         cur = pHead
 
         while cur != None:
-            # tmp=2
+            # tmp=2 tmp保存下一个cur
             tmp = cur.next
-            # next=None
+            # next=None 反转
             cur.next = pre
-            # pre = 1
+            # pre = 1 现在的cur为下一个的pre
             pre = cur
-            # cur = 2
+            # cur = 2 下一个cur就是之前保存的tmp
             cur = tmp
 
         return pre
