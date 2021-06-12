@@ -66,6 +66,9 @@ def GetLeastNumbers_Solution2(tinput: list, k: int):
     for i in range(int(k / 2) - 1, -1, -1):
         adjustHeap(numbers, i, k - 1)
 
+    # 保证前k已经构成最大堆以后,
+    # 每次只需要将arr数组中 第k个以后且 小于头节点的 元素与 最大堆的堆顶元素进行替换，
+    # 然后最大堆 再重新交换 所有元素顺序
     for i in range(k, len(tinput)):
         if tinput[i] < numbers[0]:
             numbers[0] = tinput[i]
@@ -79,13 +82,23 @@ def GetLeastNumbers_Solution2(tinput: list, k: int):
 [4, 5, 1, 6]
 --------------------------------------
 Step1:前4个调整顺序
+tmp=4
 [4, 6, 1, 5]
+[6, 6*, 1, 5]
+[6, 5, 1, 5*]
 [6, 5, 1, 4]
 
 Step2:加入比堆顶6小的元素2
+tmp=2
+[2, 5, 1, 4]
+[5, 5*, 1, 4]
+[5, 4, 1, 4*]
 [5, 4, 1, 2]
 
 Step3:加入比堆顶5小的元素3
+tmp=3
+[3, 4, 1, 2]
+[4, 4*, 1, 2]
 [4, 3, 1, 2]
 """
 if __name__ == '__main__':
