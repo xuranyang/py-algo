@@ -8,6 +8,13 @@
 """
 import pprint
 
+"""
+状态转义方程:
+            0                   i=0 or j=0
+dp[i,j] =   dp[i-1][j-1]+1      s1[i]==s2[j]
+            0                   s1[i]!=s2[j]
+"""
+
 
 class Solution:
     def LCS(self, str1, str2):
