@@ -15,7 +15,7 @@ nums=[n1,n2,n3,...]
 max_num = max(nums)
 
 [init arr]:
-len(arr)= [ max_num + (32-1) ] / 32
+len(arr)= [ max_num + (32-1) ] / 32 向上取整
 arr = [ 0, 0, 0 ... ]
 
 [set]:
@@ -27,11 +27,13 @@ arr[i//32] = arr[i//32] & ( ~( 1 << i%32 ) )
 [find]:
 arr[i//32] = arr[i//32] & (1 << i%32 )
 """
+import math
 
 
 class BitMap:
     def __init__(self, max_value):
-        self._size = int((max_value + 31 - 1) / 31)  # 向上取正  确定数组大小
+        self._size = math.ceil((max_value + 31 - 1) / 31)  # 向上取正  确定数组大小
+        # self._size = int((max_value + 31 - 1) / 31) + 1  # 向上取正  确定数组大小
         # self._size = num / 31  # 向下取正  确定数组大小
         self.array = [0 for _ in range(self._size)]  # 初始化为0
 
