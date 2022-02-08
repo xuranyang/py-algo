@@ -34,6 +34,7 @@ class SkipList:
         for i in reversed(range(len(self.head.next))):
             while current.next[i] != None and current.next[i].elem < elem:
                 current = current.next[i]
+            # update[i]=current=self.head,即 update[i] 和 self.head 是同一个对象,修改update[i]相当于修改self.head
             update[i] = current
 
         return update
@@ -61,6 +62,7 @@ class SkipList:
         update = self.updateList(insert_elem)
         # 查找insert_elem是否已经在跳跃表中存在,如果不存在就插入每一层
         if self.find(insert_elem, update) == None:
+            # len(node.next) 跳表的层数,遍历插入每一层
             for i in range(len(node.next)):
                 node.next[i] = update[i].next[i]
                 update[i].next[i] = node

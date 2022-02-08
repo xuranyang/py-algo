@@ -60,6 +60,7 @@ class SkipList(object):
             # 如果超过当前层, 补全中间层
             if rlevel > self.level:
                 for i in range(self.level + 1, rlevel + 1):
+                    # update[i]和 self.header是同一个对象,修改update[i]相当于修改self.header
                     update[i] = self.header
                 # 更新当前跳跃表的层数
                 self.level = rlevel
