@@ -134,9 +134,9 @@ def quick_sort2(li, start, end):
     # mid 取第0个元素时 不需要再设置
     #     li[left] = mid
     # 递归处理左边的数据
-    quick_sort(li, start, left - 1)
+    quick_sort2(li, start, left - 1)
     # 递归处理右边的数据
-    quick_sort(li, left + 1, end)
+    quick_sort2(li, left + 1, end)
 
 
 """
