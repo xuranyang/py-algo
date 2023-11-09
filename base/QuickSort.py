@@ -131,8 +131,9 @@ def quick_sort2(li, start, end):
     while left < right and li[left] < mid:
         left += 1
     li[left], li[right] = li[right], li[left]
-    # mid 取第0个元素时 不需要再设置
-    #     li[left] = mid
+    # mid 取第0个元素时 可以不需要再设置
+    # li[left] = mid
+    li[left] = mid
     # 递归处理左边的数据
     quick_sort2(li, start, left - 1)
     # 递归处理右边的数据
