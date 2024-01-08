@@ -81,6 +81,8 @@ class Solution:
 
         tmp_right_res.reverse()
         tmp_res_list = tmp_left_res + tmp_right_res
+        print(tmp_res_list)
+        print(arr)
 
         res = 0
         for i in range(len(arr)):
