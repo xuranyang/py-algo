@@ -80,15 +80,15 @@ class Solution:
                 right_idx -= 1
 
         tmp_right_res.reverse()
-        tmp_res_list = tmp_left_res + tmp_right_res
-        print(tmp_res_list)
+        tmp_watermark_list = tmp_left_res + tmp_right_res
+        print(tmp_watermark_list)
         print(arr)
 
         # res = 0
         # for i in range(len(arr)):
         #     res += tmp_res_list[i] - arr[i]
         # return res
-        res_list = [tmp_res_list[i] - arr[i] for i in range(len(arr))]
+        res_list = [tmp_watermark_list[i] - arr[i] for i in range(len(arr))]
         print(res_list)
         return sum(res_list)
 
