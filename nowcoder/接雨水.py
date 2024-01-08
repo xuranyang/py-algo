@@ -84,10 +84,13 @@ class Solution:
         print(tmp_res_list)
         print(arr)
 
-        res = 0
-        for i in range(len(arr)):
-            res += tmp_res_list[i] - arr[i]
-        return res
+        # res = 0
+        # for i in range(len(arr)):
+        #     res += tmp_res_list[i] - arr[i]
+        # return res
+        res_list = [tmp_res_list[i] - arr[i] for i in range(len(arr))]
+        print(res_list)
+        return sum(res_list)
 
 
 if __name__ == '__main__':
