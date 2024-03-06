@@ -65,11 +65,10 @@ mid = arr3[0] = 9
 [5,6] [7] [8,9]
 """
 
-
 """
 快排写法1
 """
-def quick_sort(li, start, end):
+def quick_sort1(li, start, end):
     """
     :param li: 要排序的list
     :param start: 排序的起始位置
@@ -98,9 +97,9 @@ def quick_sort(li, start, end):
     # while结束后，把mid放到中间位置，left=right
     li[left] = mid
     # 递归处理左边的数据
-    quick_sort(li, start, left - 1)
+    quick_sort1(li, start, left - 1)
     # 递归处理右边的数据
-    quick_sort(li, left + 1, end)
+    quick_sort1(li, left + 1, end)
 
 
 """
@@ -122,15 +121,15 @@ def quick_sort2(li, start, end):
     right = end
     # 把0位置的数据，认为是中间值
     mid = li[left]
-    #     while left < right:
-    # 让右边游标往左移动，目的是找到小于mid的值，交换左右游标的值
-    while left < right and li[right] >= mid:
-        right -= 1
-    li[left], li[right] = li[right], li[left]
-    # 让左边游标往右移动，目的是找到大于等于mid的值，交换左右游标的值
-    while left < right and li[left] < mid:
-        left += 1
-    li[left], li[right] = li[right], li[left]
+    while left < right:
+        # 让右边游标往左移动，目的是找到小于mid的值，交换左右游标的值
+        while left < right and li[right] >= mid:
+            right -= 1
+        li[left], li[right] = li[right], li[left]
+        # 让左边游标往右移动，目的是找到大于等于mid的值，交换左右游标的值
+        while left < right and li[left] < mid:
+            left += 1
+        li[left], li[right] = li[right], li[left]
     # mid 取第0个元素时 可以不需要再设置
     # li[left] = mid
     li[left] = mid
@@ -209,14 +208,45 @@ K=9 <-10
    ^
 """
 
-if __name__ == '__main__':
+
+def quick_sort(arr):
+    """
+    精简版快排
+    """
+    # 基线条件：如果列表为空或只包含一个元素，则直接返回
+    if len(arr) <= 1:
+        return arr
+    # 选择基准元素（这里选择中间元素，也可以选择第0个等等）
+    pivot = arr[len(arr) // 2]
+    # 分割列表为小于、等于和大于基准元素的三部分
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    # 递归地对左右两部分进行排序，并将它们与基准元素连接起来
+    return quick_sort(left) + middle + quick_sort(right)
+
+
+def reset_arr():
     # arr = [10, 7, 8, 9, 1, 5]
-    arr = [6, 8, 7, 9, 5]
+    # arr = [6, 8, 7, 9, 5]
+    arr = [5, 3, 7, 6, 4, 1, 0, 2, 9, 10, 8]
+    return arr
+
+
+if __name__ == '__main__':
+    print("======== quick_sort1 ========")
+    arr = reset_arr()
     n = len(arr)
-    quick_sort(arr, 0, n - 1)
+    quick_sort1(arr, 0, n - 1)
     print(arr)
 
-    print("------")
-
+    print("======== quick_sort2 ========")
+    arr = reset_arr()
+    n = len(arr)
     quick_sort2(arr, 0, n - 1)
     print(arr)
+
+    print("======== quick_sort3 ========")
+    arr = reset_arr()
+    sorted_arr = quick_sort(arr)
+    print(sorted_arr)
