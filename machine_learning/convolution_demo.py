@@ -96,6 +96,31 @@ def show_convolution():
     plt.show()
 
 
+def get_all_ax():
+    label_x = []
+    label_ft = []
+    label_gt = []
+    label_gtx = []
+    label_gxt = []
+    x = 7  # 令 x=7
+    for t in range(-3, 11):
+        f_t = f(t)
+        g_t = g(t)
+        g_tx = g(t - x)
+        g_xt = g(x - t)
+        label_x.append(t)
+        label_ft.append(f_t)
+        label_gt.append(g_t)
+        label_gtx.append(g_tx)
+        label_gxt.append(g_xt)
+    return {
+        'f(t)': (label_x, label_ft),
+        'g(t)': (label_x, label_gt),
+        'g(t-7)': (label_x, label_gtx),
+        'g(7-t)': (label_x, label_gxt)
+    }
+
+
 def show_all():
     # 创建1个图形和4个轴
     fig, (ax1, ax2, ax3, ax4) = plt.subplots(4)
@@ -137,87 +162,19 @@ def show_all():
     plt.show()
 
 
-def show_2():
+def show_part(ax1_name, ax2_name):
     # 创建1个图形和2个轴
     fig, (ax1, ax2) = plt.subplots(2)
 
-    label_x = []
-    label_ft = []
-    label_gt = []
-    x = 7  # 令 x=7
-    # 创建一些数据进行绘制
-    for t in range(-3, 11):
-        f_t = f(t)
-        g_t = g(t)
-        label_x.append(t)
-        label_ft.append(f_t)
-        label_gt.append(g_t)
-
     # 在第一个轴上绘制第一张图
-    ax1.plot(label_x, label_ft)
-    ax1.set_title('f(t)')  # 设置第1张图的标题
+    x, y = get_all_ax().get(ax1_name)
+    ax1.plot(x, y)
+    ax1.set_title(ax1_name)  # 设置第1张图的标题
 
     # 在第二个轴上绘制第二张图
-    ax2.plot(label_x, label_gt)
-    ax2.set_title('g(t)')  # 设置第2张图的标题
-
-    plt.tight_layout()  # 当有多个子图时，可以使用该语句保证各子图标题不会重叠
-    # 显示图形
-    plt.show()
-
-
-def show_3():
-    # 创建1个图形和4个轴
-    fig, (ax1, ax3) = plt.subplots(2)
-
-    label_x = []
-    label_ft = []
-    label_gtx = []
-    x = 7  # 令 x=7
-    # 创建一些数据进行绘制
-    for t in range(-3, 20):
-        f_t = f(t)
-        g_t = g(t)
-        g_tx = g(t - x)
-        g_xt = g(x - t)
-        label_x.append(t)
-        label_ft.append(f_t)
-        label_gtx.append(g_tx)
-
-    # 在第一个轴上绘制第一张图
-    ax1.plot(label_x, label_ft)
-    ax1.set_title('f(t)')  # 设置第1张图的标题
-
-    ax3.plot(label_x, label_gtx)
-    ax3.set_title('g(t-7)')  # 设置第3张图的标题
-
-    plt.tight_layout()  # 当有多个子图时，可以使用该语句保证各子图标题不会重叠
-    # 显示图形
-    plt.show()
-
-
-def show_4():
-    # 创建1个图形和2个轴
-    fig, (ax1, ax4) = plt.subplots(2)
-
-    label_x = []
-    label_ft = []
-    label_gxt = []
-    x = 7  # 令 x=7
-    # 创建一些数据进行绘制
-    for t in range(-3, 11):
-        f_t = f(t)
-        g_xt = g(x - t)
-        label_x.append(t)
-        label_ft.append(f_t)
-        label_gxt.append(g_xt)
-
-    # 在第一个轴上绘制第一张图
-    ax1.plot(label_x, label_ft)
-    ax1.set_title('f(t)')  # 设置第1张图的标题
-
-    ax4.plot(label_x, label_gxt)
-    ax4.set_title('g(7-t)')  # 设置第4张图的标题
+    x, y = get_all_ax().get(ax2_name)
+    ax2.plot(x, y)
+    ax2.set_title(ax2_name)  # 设置第2张图的标题
 
     plt.tight_layout()  # 当有多个子图时，可以使用该语句保证各子图标题不会重叠
     # 显示图形
@@ -227,6 +184,6 @@ def show_4():
 if __name__ == '__main__':
     show_convolution()
     # show_all()
-    # show_2()
-    # show_3()
-    # show_4()
+    # show_part('f(t)', 'g(t)')
+    # show_part('f(t)', 'g(t-7)')
+    show_part('f(t)', 'g(7-t)')
